@@ -8,6 +8,7 @@ function CourseRoutes(app) {
             res.status(404).send("Course not found");
             return;
         }
+        console.log(course);
         res.send(course);
     });
 
@@ -29,8 +30,9 @@ function CourseRoutes(app) {
 
     app.post("/api/courses", (req, res) => {
         const course = { ...req.body,
-            _id: new Date().getTime().toString(),
+            _id: { $oid: new Date().getTime().toString() },
             };
+        console.log(course);
         Database.courses.push(course);
         res.send(course);
     });
