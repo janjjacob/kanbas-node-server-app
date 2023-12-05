@@ -19,12 +19,14 @@ function ModuleRoutes(app) {
 
     app.post("/api/courses/:cid/modules", (req, res) => {
         const { cid } = req.params;
+        console.log(cid)
         const newModule = {
             ...req.body,
             course: cid,
             _id: new Date().getTime().toString(),
         };
         db.modules.push(newModule);
+        // console.log(newModule);
         res.send(newModule);
     });
 
